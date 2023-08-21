@@ -11,7 +11,18 @@ export default function App() {
   console.log({ data });
 
   // Write code here.
-  //
+
+    async function triggerfetch() {
+        const response = await fetch('https://swapi.dev/api/${dataType}/' + {dataType})
+        const json = await response.json()
+        setData(json)
+    }
+
+    useEffect(() => {
+        setDataType({dataType})
+    }, [])
+
+  //////
 
   return (
     <div>
