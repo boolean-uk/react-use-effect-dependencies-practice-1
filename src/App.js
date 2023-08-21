@@ -4,19 +4,38 @@ import SelectTypeForm from "./components/SelectTypeForm";
 import "./styles.css";
 
 export default function App() {
-  const [dataType, setDataType] = useState("");
+    const [dataType, setDataType] = useState("");
 
-  const [data, setData] = useState(null);
+    const [data, setData] = useState(null);
+    // const [inputValue, setInputValue] = useState("");
 
-  console.log({ data });
+    console.log({ data });
 
-  // Write code here.
-  //
+    // Write code here.
+    //
+    async function getData() {
+        const response = await fetch(`https://swapi.dev/api/${dataType}/`);
+        const jsonResponse = await response.json();
+        setData(jsonResponse);
+    }
+    useEffect(() => {
+        console.log("useEffect ran with ", dataType);
+        if (dataType) {
+            getData();
+        }
+    }, [dataType]);
 
-  return (
-    <div>
-      <SelectTypeForm setDataType={setDataType} />
-      {data && <DataList dataType={dataType} data={data.results} />}
-    </div>
-  );
+    function handleSubmit(selectedValue) {
+        // event.preventDefault();
+        setDataType(selectedValue);
+    }
+    return (
+        <div>
+            <SelectTypeForm
+                setDataType={setDataType}
+                handleSubmit={handleSubmit}
+            />
+            {data && <DataList dataType={dataType} data={data.results} />}
+        </div>
+    );
 }
