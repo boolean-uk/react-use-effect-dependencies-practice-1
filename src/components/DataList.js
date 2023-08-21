@@ -1,4 +1,5 @@
 function DataList(props) {
+
   const { dataType, data } = props;
 
   return (
