@@ -16,7 +16,9 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (dataType !== ''){
       getData()
+    }
     }, [dataType])
 
 
