@@ -11,7 +11,19 @@ export default function App() {
   console.log({ data });
 
   // Write code here.
-  //
+  async function getData() {
+    if (dataType) {
+      const link = `https://swapi.dev/api/${dataType}/`
+      const response = await fetch(link)
+      const json = await response.json()
+      console.log('json:', json)
+      setData(json)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [dataType])  // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
