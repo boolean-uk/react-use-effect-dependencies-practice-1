@@ -4,14 +4,22 @@ import SelectTypeForm from "./components/SelectTypeForm";
 import "./styles.css";
 
 export default function App() {
-  const [dataType, setDataType] = useState("");
+  const [dataType, setDataType] = useState("people");
 
   const [data, setData] = useState(null);
 
-  console.log({ data });
+  // console.log({ data });
 
-  // Write code here.
-  //
+  async function getData() {
+    const retrieve = await fetch(`https://swapi.dev/api/${dataType}//`)
+    const starWars = await retrieve.json()
+    console.log(starWars)
+    setData(starWars)
+  }
+  
+  useEffect(() => {
+    getData()
+  }, [dataType])
 
   return (
     <div>
@@ -20,3 +28,4 @@ export default function App() {
     </div>
   );
 }
+
