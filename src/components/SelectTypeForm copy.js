@@ -3,7 +3,7 @@ function SelectTypeForm(props) {
 
   return (
     
-    <form className="three-column-grid__expand-two gap-md" onChange={(event) => props.setDataType(event.target.value)}>
+    <form className="three-column-grid__expand-two gap-md">
       <label htmlFor="type">Data Type</label>
       <select id="type" name="type">
         <option value="">Please select...</option>

@@ -10,12 +10,22 @@ export default function App() {
 
   console.log({ data });
 
-  // Write code here.
-  //
+  // Write code here:
+  async function getData() {
+    const response = await fetch('https://swapi.dev/api/' + dataType)
+    const json = await response.json()
+    setData(json)
+}
+
+  useEffect(() => {
+    setDataType(dataType)
+    console.log("selected:",dataType)
+    getData()
+  }, [dataType])
 
   return (
     <div>
-      <SelectTypeForm setDataType={setDataType} />
+      <SelectTypeForm setDataType={setDataType}/>
       {data && <DataList dataType={dataType} data={data.results} />}
     </div>
   );
