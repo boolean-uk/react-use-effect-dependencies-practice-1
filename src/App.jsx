@@ -13,24 +13,13 @@ export default function App() {
     if (dataType)
     {
       const fetchData = async () => {
-        try
-        {
-          const response = await fetch(`https://swapi.dev/api/${dataType}/`);
-          if (!response.ok)
-          {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const jsonData = await response.json();
-          setData(jsonData);
-        } catch (error)
-        {
-          console.error("Fetch error: ", error);
-        }
-      };
-
-      fetchData();
+        await fetch(`https://swapi.dev/api/${dataType}/`)
+          .then(res => res.json())
+          .then(res => setData(res))
+      }
+      fetchData()
     }
-  }, [dataType]);
+  }, [dataType])
 
   return (
     <div>
